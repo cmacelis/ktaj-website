@@ -1,11 +1,60 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// This area (between the dashes) is for server-side code.
+// We can add logic here later.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>KTAJ - Keep Talking About Jesus</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">KTAJ</div>
+      <div class="links">
+        <a href="#">Home</a>
+        <a href="#">Sermons</a>
+        <a href="#">About Us</a>
+      </div>
+    </nav>
+
+    <main>
+      <h1>Keep Talking About Jesus</h1>
+      <p>Welcome to our ministry. Sharing the gospel through media and community.</p>
+      <button>Watch Latest Sermon</button>
+    </main>
+
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; color: #333; }
+      
+      nav { 
+        background: #222; 
+        color: white; 
+        padding: 1rem 2rem; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+      }
+      
+      .logo { font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; }
+      .links a { color: #ccc; text-decoration: none; margin-left: 20px; }
+      .links a:hover { color: white; }
+
+      main { text-align: center; padding: 4rem 1rem; }
+      h1 { font-size: 3rem; margin-bottom: 0.5rem; color: #111; }
+      p { font-size: 1.25rem; color: #666; margin-bottom: 2rem; }
+      
+      button { 
+        background: #0070f3; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        font-size: 1.1rem; 
+        border-radius: 5px; 
+        cursor: pointer; 
+      }
+      button:hover { background: #005bb5; }
+    </style>
+  </body>
+</html>

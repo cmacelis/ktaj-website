@@ -384,6 +384,38 @@
   color: white;
 }
 
+
+/* --- MOBILE NAV FIX --- */
+  @media (max-width: 768px) {
+    /* 1. Stack the entire navbar vertically */
+    nav {
+      flex-direction: column;
+      gap: 15px; /* Add space between Logo, Links, and Button */
+      padding: 1.5rem 1rem; /* Adjust padding for mobile */
+    }
+
+    /* 2. Center the Links */
+    .links {
+      display: flex;
+      flex-direction: column; /* Stack links vertically for easy tapping */
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    /* 3. Reset margins on links so they center perfectly */
+    .links a {
+      margin-left: 0; 
+      font-size: 1.1rem; /* Make text slightly bigger for fingers */
+    }
+
+    /* 4. Make the Donate Button stand out */
+    .donate-btn {
+      width: 100%; /* Make button full width on mobile? Or just bigger */
+      max-width: 200px;
+      text-align: center;
+    }
+  }
     </style>
   </body>
 </html>

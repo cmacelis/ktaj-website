@@ -15,15 +15,17 @@
     
     <header class="hero">
       <nav>
-        <div class="logo">KTAJ</div>
+        <a href="#" class="logo">
+           <img src="/ktaj-logo.png" alt="KTAJ Logo" class="nav-logo">
+        </a>
+        
         <div class="links">
           <a href="#">Home</a>
           <a href="#about">About</a>
           <a href="#connect">Connect</a>
-		  <a href="https://www.paypal.com/donate/?business=info@ktajministries.org&currency_code=USD" target="_blank" class="donate-btn">Donate</a>
+          <a href="https://www.paypal.com/donate/?business=info@ktajministries.org&currency_code=USD" target="_blank" class="donate-btn">Donate</a>
           <a href="#prayer">Prayer</a>
         </div>
-      </nav>
       </nav>
 
       <div class="hero-content">
@@ -41,7 +43,8 @@
         <div class="foundation-text">
             <p>We stand firmly on the truth of the Holy Bible as the inspired and authoritative Word of God, delivered to us through the apostles and preserved for all generations. Scripture is our foundation, our guide, and the final authority for faith and life.</p>
          </div>
-<div class="video-container">
+
+        <div class="video-container">
             <iframe 
                 src="https://www.youtube.com/embed/wrDuymK0CMc" 
                 title="KTAJ Ministry Video" 
@@ -50,7 +53,7 @@
                 allowfullscreen>
             </iframe>
         </div>
-        <div class="grid">
+
         <div class="grid">
           
           <div class="card">
@@ -90,20 +93,18 @@
           <a href="https://www.tiktok.com/@_wyldeman_" target="_blank" class="social-btn tiktok">Follow on TikTok</a>
           
           <a href="https://discord.gg/JzZdKn8KHy" target="_blank" class="social-btn discord">Join our Discord</a>
-		  <a href="https://www.instagram.com/ktajministries" target="_blank" class="social-btn instagram">Instagram</a>
-<a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" class="social-btn youtube">YouTube</a>
+          <a href="https://www.instagram.com/ktajministries" target="_blank" class="social-btn instagram">Instagram</a>
+          <a href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" class="social-btn youtube">YouTube</a>
         </div>
       </div>
     </section>
 
-	<section id="merch" class="section-white">
+    <section id="merch" class="section-white">
       <div class="container">
         <h2>Official Merch</h2>
         <p class="subtitle">Support the ministry and wear the message.</p>
         
         <div class="grid">
-          
-          <div class="grid">
           
           <div class="merch-card">
             <img src="/shirt.jpg" alt="KTAJ Classic Tee" class="merch-img">
@@ -125,8 +126,6 @@
             <p class="price">$30.99</p>
             <a href="#" class="btn-small">Buy Now</a>
           </div>
-
-        </div>
 
         </div>
         
@@ -195,8 +194,36 @@
         justify-content: space-between; 
         align-items: center; 
       }
-      .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 3px; }
-      .links a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 30px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase;}
+
+      /* LOGO IMAGE STYLE */
+      .nav-logo {
+        height: 150px; 
+        width: auto;  
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); 
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      /* --- NEW: FIX LINKS ALIGNMENT --- */
+      .links {
+        display: flex;
+        align-items: center;
+        margin-left: auto; /* This pushes the links to the right */
+      }
+
+      .links a { 
+        color: rgba(255,255,255,0.7); 
+        text-decoration: none; 
+        margin-left: 30px; 
+        font-weight: 700; 
+        font-size: 0.9rem; 
+        text-transform: uppercase;
+      }
       .links a:hover { color: white; }
 
       .hero-content { 
@@ -253,6 +280,27 @@
       .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #000; }
       .card p { line-height: 1.6; color: #444; }
 
+      /* VIDEO CONTAINER CSS (Added this back so video works on mobile) */
+      .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px; 
+        margin: 2rem auto; 
+        padding-bottom: 56.25%; 
+        height: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        background: #000;
+      }
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
       /* 5. Buttons */
       .btn { 
         background: white; color: black; padding: 16px 32px; 
@@ -265,14 +313,21 @@
       .social-btn {
         padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;
       }
-      /* ... inside your social buttons styles ... */
       
       .tiktok { background: #fe2c55; color: white; }
-      
-      /* NEW DISCORD STYLE */
       .discord { background: #5865F2; color: white; }
+      
+      /* New Social Colors */
+      .instagram {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: white;
+      }
+      .youtube {
+        background: #FF0000;
+        color: white;
+      }
 
-      /* 6. Form Styles (The Fix) */
+      /* 6. Form Styles */
       .contact-form {
         max-width: 600px;
         margin: 0 auto;
@@ -312,153 +367,4 @@
         width: 100%;
         max-width: 200px;
       }
-      .btn-submit:hover { background: #333; }
-
-      /* Footer */
-      footer { background: #000; color: #666; text-align: center; padding: 2rem; font-size: 0.9rem; }
-
-      /* Mobile Tweak - MUST BE AT THE BOTTOM */
-      @media (max-width: 600px) {
-        .hero-content h1 { font-size: 3rem; }
-        .grid { text-align: center; }
-      }
-    
-/* Merch Section Styles */
-      .merch-card {
-        text-align: center;
-        padding: 1rem;
-        transition: transform 0.2s;
-      }
-      .merch-card:hover {
-        transform: translateY(-5px); /* Float up slightly on hover */
-      }
-
-      /* ... inside your merch styles ... */
-
-      /* DELETE the .placeholder-img rule if you want, or just ignore it */
-
-      .merch-img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover; /* This creates a clean crop if the image size varies */
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        background: #f0f0f0; /* Slight background while loading */
-      }
-
-      .price {
-        font-weight: 700;
-        color: #fe2c55; /* TikTok Red for a pop of color */
-        font-size: 1.1rem;
-        margin: 0.5rem 0 1rem 0;
-      }
-
-      .btn-small {
-        background: #111;
-        color: white;
-        padding: 8px 20px;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 700;
-        border-radius: 4px;
-        text-transform: uppercase;
-        display: inline-block;
-      }
-      .btn-small:hover { background: #444; }
-
-	  /* Donate Button Style */
-.donate-btn {
-  background-color: #0070ba; /* PayPal Blue */
-  color: white !important;   /* Force white text */
-  padding: 10px 20px;
-  border-radius: 50px;       /* Rounded edges like your other buttons */
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: transform 0.2s;
-}
-
-.donate-btn:hover {
-  background-color: #005ea6;
-  transform: translateY(-2px); /* Slight lift on hover */
-}
-
-/* Social Media Brand Colors */
-.instagram {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: white;
-}
-
-.youtube {
-  background: #FF0000;
-  color: white;
-}
-
-
-/* --- MOBILE NAV FIX --- */
-/* --- MOBILE RESPONSIVENESS (NAV + SECTIONS) --- */
-  @media (max-width: 768px) {
-    
-    /* 1. Fix the Navigation (Keep this) */
-    nav {
-      flex-direction: column;
-      gap: 15px;
-      padding: 1.5rem 1rem;
-    }
-    .links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      width: 100%;
-    }
-    .links a { margin-left: 0; font-size: 1.1rem; }
-    .donate-btn { width: 100%; max-width: 200px; text-align: center; }
-
-    /* 2. FIX THE SOCIAL BUTTONS (This fixes the white space) */
-    .social-buttons {
-      flex-direction: column; /* Stack them top-to-bottom */
-      align-items: center;    /* Center them */
-      width: 100%;            /* Ensure they don't overflow */
-    }
-
-    .social-btn {
-      width: 100%;            /* Make buttons full width */
-      max-width: 300px;       /* ...but not too huge */
-      text-align: center;     /* Center the text */
-      box-sizing: border-box; /* Prevents padding from breaking layout */
-      margin-bottom: 10px;    /* Add space between stacked buttons */
-    }
-  }
-  @media (max-width: 768px) {
-    /* 1. Stack the entire navbar vertically */
-    nav {
-      flex-direction: column;
-      gap: 15px; /* Add space between Logo, Links, and Button */
-      padding: 1.5rem 1rem; /* Adjust padding for mobile */
-    }
-
-    /* 2. Center the Links */
-    .links {
-      display: flex;
-      flex-direction: column; /* Stack links vertically for easy tapping */
-      align-items: center;
-      gap: 15px;
-      width: 100%;
-    }
-
-    /* 3. Reset margins on links so they center perfectly */
-    .links a {
-      margin-left: 0; 
-      font-size: 1.1rem; /* Make text slightly bigger for fingers */
-    }
-
-    /* 4. Make the Donate Button stand out */
-    .donate-btn {
-      width: 100%; /* Make button full width on mobile? Or just bigger */
-      max-width: 200px;
-      text-align: center;
-    }
-  }
-    </style>
-  </body>
-</html>
+      .btn

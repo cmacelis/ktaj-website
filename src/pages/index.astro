@@ -6,7 +6,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="KTAJ - Keep Talking About Jesus. A Christian ministry sharing the gospel through media, community, and Christ-centered content. Join us in worship, prayer, and fellowship." />
     <title>KTAJ - Keep Talking About Jesus</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -18,13 +21,20 @@
         <a href="#" class="logo">
            <img src="/ktaj-logo.png" alt="KTAJ Logo" class="nav-logo">
         </a>
-        
+
+        <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
         <div class="links">
           <a href="#">Home</a>
           <a href="#about">About</a>
           <a href="#connect">Connect</a>
-          <a href="https://www.paypal.com/donate/?business=Ktajministries@gmail.com&currency_code=USD" target="_blank" class="donate-btn">Donate</a>
+          <a href="#merch">Merch</a>
           <a href="#prayer">Prayer</a>
+          <a href="https://www.paypal.com/donate/?business=Ktajministries@gmail.com&currency_code=USD" target="_blank" class="donate-btn">Donate</a>
         </div>
       </nav>
 
@@ -118,32 +128,32 @@
         <p class="subtitle">Support the ministry and wear the message.</p>
         
         <div class="grid">
-          
+
           <div class="merch-card">
-            <img src="/shirt.jpg" alt="KTAJ Classic Tee" class="merch-img">
-            <h3>KTAJ Let Your Light Shine</h3>
+            <img src="/shirt.jpg" alt="KTAJ Let Your Light Shine Tee - white t-shirt with KTAJ design" class="merch-img">
+            <h3>KTAJ Let Your Light Shine Tee</h3>
             <p class="price">$30.99</p>
-            <a href="#" class="btn-small">Buy Now</a>
+            <span class="btn-small coming-soon">Coming Soon</span>
           </div>
 
           <div class="merch-card">
-            <img src="/hoodie.jpg" alt="Worship Hoodie" class="merch-img">
-            <h3>Prayer Warrior Classic Tee</h3>
+            <img src="/hoodie.jpg" alt="Prayer Warrior Hoodie - black hoodie with Prayer Warrior design" class="merch-img">
+            <h3>Prayer Warrior Hoodie</h3>
             <p class="price">$30.99</p>
-            <a href="#" class="btn-small">Buy Now</a>
+            <span class="btn-small coming-soon">Coming Soon</span>
           </div>
 
           <div class="merch-card">
-            <img src="/cap.jpg" alt="Ministry Cap" class="merch-img">
-            <h3>KTAJ Classic Tee</h3>
+            <img src="/cap.jpg" alt="KTAJ Ministry Cap - black cap with KTAJ logo" class="merch-img">
+            <h3>KTAJ Ministry Cap</h3>
             <p class="price">$30.99</p>
-            <a href="#" class="btn-small">Buy Now</a>
+            <span class="btn-small coming-soon">Coming Soon</span>
           </div>
 
         </div>
-        
+
         <div style="margin-top: 3rem;">
-            <a href="#" class="btn">Visit Full Store</a>
+            <p class="subtitle" style="margin-bottom: 0;">Full store launching soon — stay connected for updates!</p>
         </div>
       </div>
     </section>
@@ -159,15 +169,18 @@
           <input type="hidden" name="redirect" value="https://ktaj-website.vercel.app/">
 
           <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name (Optional)">
+            <label for="prayer-name" class="sr-only">Your Name (Optional)</label>
+            <input type="text" id="prayer-name" name="name" placeholder="Your Name (Optional)">
           </div>
-          
+
           <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email (Optional)">
+            <label for="prayer-email" class="sr-only">Your Email (Optional)</label>
+            <input type="email" id="prayer-email" name="email" placeholder="Your Email (Optional)">
           </div>
-          
+
           <div class="form-group">
-            <textarea name="message" required placeholder="Type your prayer request here..."></textarea>
+            <label for="prayer-message" class="sr-only">Your Prayer Request</label>
+            <textarea id="prayer-message" name="message" required placeholder="Type your prayer request here..."></textarea>
           </div>
 
           <button type="submit" class="btn-submit">Send Request</button>
@@ -180,6 +193,7 @@
     </footer>
 
     <script is:inline>
+      // Daily scripture fetch
       fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily')
         .then(response => response.json())
         .then(data => {
@@ -191,19 +205,51 @@
           document.getElementById('verse-text').innerText = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.";
           document.getElementById('verse-reference').innerText = "John 3:16";
         });
+
+      // Mobile hamburger menu toggle
+      const hamburger = document.querySelector('.hamburger');
+      const links = document.querySelector('.links');
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = links.classList.toggle('open');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Close menu when a nav link is clicked
+      links.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          links.classList.remove('open');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
     </script>
     
    <style>
-      /* 1. Global Reset & Box Sizing (THE MOBILE FIX) */
+      /* 1. Global Reset & Box Sizing */
       * { box-sizing: border-box; }
 
       html { scroll-behavior: smooth; }
-      
-      body { 
-        font-family: 'Montserrat', sans-serif; 
-        margin: 0; 
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
         color: #333;
-        overflow-x: hidden; 
+        overflow-x: hidden;
+      }
+
+      /* Screen-reader only utility */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       /* 2. Hero Section */
@@ -211,26 +257,25 @@
         background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('/bg.jpg');
         background-size: cover;
         background-position: center;
-        height: 100vh; 
+        height: 100vh;
         display: flex;
         flex-direction: column;
         color: white;
       }
 
-      nav { 
-        padding: 2rem 3rem; 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
+      nav {
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
       }
 
-      /* LOGO IMAGE STYLE */
       .nav-logo {
-        height: 60px; 
-        width: auto;  
+        height: 60px;
+        width: auto;
         display: block;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); 
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
       }
 
       .logo {
@@ -239,56 +284,88 @@
         text-decoration: none;
       }
 
-      /* LINKS ALIGNMENT */
+      /* Hamburger menu button - hidden on desktop */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        z-index: 10;
+      }
+
+      .hamburger .bar {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Navigation links */
       .links {
         display: flex;
         align-items: center;
-        margin-left: auto; 
+        margin-left: auto;
       }
 
-      .links a { 
-        color: rgba(255,255,255,0.7); 
-        text-decoration: none; 
-        margin-left: 30px; 
-        font-weight: 700; 
-        font-size: 0.9rem; 
+      .links a {
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+        margin-left: 30px;
+        font-weight: 700;
+        font-size: 0.9rem;
         text-transform: uppercase;
       }
       .links a:hover { color: white; }
 
-      .hero-content { 
-        flex-grow: 1; 
-        display: flex; 
+      .hero-content {
+        flex-grow: 1;
+        display: flex;
         flex-direction: column;
-        justify-content: center; 
-        align-items: center; 
-        text-align: center; 
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         padding: 1rem;
         width: 100%;
       }
 
-      .hero-content h1 { 
-        font-size: 4.5rem; 
-        line-height: 1; 
-        margin-bottom: 1rem; 
-        font-weight: 900; 
+      .hero-content h1 {
+        font-size: 4.5rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+        font-weight: 900;
         letter-spacing: -2px;
-        text-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
       }
-      
-      .hero-content p { 
-        font-size: 1.5rem; 
-        color: rgba(255,255,255,0.9); 
-        margin-bottom: 2.5rem; 
+
+      .hero-content p {
+        font-size: 1.5rem;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 2.5rem;
       }
 
       /* 3. General Section Styles */
       .section-white { background: white; color: #111; padding: 5rem 1rem; }
       .section-dark { background: #111; color: white; padding: 5rem 1rem; }
       .section-gray { background: #f4f4f4; color: #111; padding: 5rem 1rem; }
-      
+
       .container { max-width: 1000px; margin: 0 auto; text-align: center; width: 100%; }
-      
+
       h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: -1px; }
       .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 3rem; }
 
@@ -303,7 +380,7 @@
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         text-align: left;
       }
@@ -315,9 +392,9 @@
       .video-container {
         position: relative;
         width: 100%;
-        max-width: 800px; 
-        margin: 2rem auto; 
-        padding-bottom: 56.25%; 
+        max-width: 800px;
+        margin: 2rem auto;
+        padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
         border-radius: 12px;
@@ -333,21 +410,21 @@
       }
 
       /* 5. Buttons */
-      .btn { 
-        background: white; color: black; padding: 16px 32px; 
-        text-decoration: none; font-weight: 700; border-radius: 50px; 
+      .btn {
+        background: white; color: black; padding: 16px 32px;
+        text-decoration: none; font-weight: 700; border-radius: 50px;
         text-transform: uppercase; transition: transform 0.2s; display: inline-block;
       }
       .btn:hover { transform: scale(1.05); }
 
-      .social-buttons { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; }
+      .social-buttons { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
       .social-btn {
         padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;
       }
-      
+
       .tiktok { background: #fe2c55; color: white; }
       .discord { background: #5865F2; color: white; }
-      
+
       .instagram {
         background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         color: white;
@@ -367,7 +444,7 @@
         width: 100%;
       }
 
-      .contact-form input, 
+      .contact-form input,
       .contact-form textarea {
         width: 100%;
         padding: 1rem;
@@ -378,7 +455,7 @@
       }
 
       .contact-form textarea {
-        min-height: 150px; 
+        min-height: 150px;
         resize: vertical;
       }
 
@@ -413,15 +490,15 @@
       .merch-img {
         width: 100%;
         height: 250px;
-        object-fit: cover; 
+        object-fit: cover;
         border-radius: 8px;
         margin-bottom: 1rem;
-        background: #f0f0f0; 
+        background: #f0f0f0;
       }
 
       .price {
         font-weight: 700;
-        color: #fe2c55; 
+        color: #fe2c55;
         font-size: 1.1rem;
         margin: 0.5rem 0 1rem 0;
       }
@@ -439,12 +516,18 @@
       }
       .btn-small:hover { background: #444; }
 
+      .coming-soon {
+        background: #555;
+        cursor: default;
+      }
+      .coming-soon:hover { background: #555; }
+
       /* Donate Button Style */
       .donate-btn {
-        background-color: #0070ba; 
-        color: white !important;   
+        background-color: #0070ba;
+        color: white !important;
         padding: 10px 20px;
-        border-radius: 50px;       
+        border-radius: 50px;
         font-weight: 700;
         text-transform: uppercase;
         transition: transform 0.2s;
@@ -452,42 +535,51 @@
 
       .donate-btn:hover {
         background-color: #005ea6;
-        transform: translateY(-2px); 
+        transform: translateY(-2px);
       }
 
       /* --- MOBILE RESPONSIVENESS --- */
       @media (max-width: 768px) {
-        
+
         nav {
-          flex-direction: column;
-          gap: 15px;
+          flex-wrap: wrap;
           padding: 1.5rem 1rem;
         }
-        
-        .links {
+
+        .hamburger {
           display: flex;
+        }
+
+        .links {
+          display: none;
           flex-direction: column;
           align-items: center;
           gap: 15px;
           width: 100%;
           margin-left: 0;
+          padding-top: 1rem;
         }
+
+        .links.open {
+          display: flex;
+        }
+
         .links a { margin-left: 0; font-size: 1.1rem; }
         .donate-btn { width: 100%; max-width: 200px; text-align: center; }
 
         .social-buttons {
-          flex-direction: column; 
-          align-items: center;    
-          width: 100%;            
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
 
         .social-btn {
-          width: 100%;            
-          max-width: 300px;       
-          text-align: center;     
-          margin-bottom: 10px;    
+          width: 100%;
+          max-width: 300px;
+          text-align: center;
+          margin-bottom: 10px;
         }
-        
+
         .hero-content h1 { font-size: 3rem; }
         .grid { text-align: center; }
       }

@@ -15,7 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    
+
+    <div id="intro-overlay">
+      <video id="intro-video" autoplay muted playsinline>
+        <source src="/KTAJ-Intro.mp4" type="video/mp4">
+      </video>
+      <button id="skip-btn" aria-label="Skip intro">Skip &#x276F;</button>
+    </div>
+
     <header class="hero">
       <nav>
         <a href="#" class="logo">
@@ -193,6 +200,24 @@
     </footer>
 
     <script is:inline>
+      // Intro overlay logic
+      const overlay = document.getElementById('intro-overlay');
+      const introVideo = document.getElementById('intro-video');
+      const skipBtn = document.getElementById('skip-btn');
+
+      function dismissIntro() {
+        overlay.classList.add('fade-out');
+        setTimeout(() => overlay.remove(), 800);
+        sessionStorage.setItem('ktaj-intro-seen', '1');
+      }
+
+      if (sessionStorage.getItem('ktaj-intro-seen')) {
+        overlay.remove();
+      } else {
+        introVideo.addEventListener('ended', dismissIntro);
+        skipBtn.addEventListener('click', dismissIntro);
+      }
+
       // Daily scripture fetch
       fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily')
         .then(response => response.json())
@@ -227,6 +252,51 @@
     </script>
     
    <style>
+      /* Intro Video Overlay */
+      #intro-overlay {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease;
+      }
+
+      #intro-overlay.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #intro-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      #skip-btn {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        border: 2px solid rgba(255,255,255,0.5);
+        padding: 10px 20px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        border-radius: 50px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: background 0.2s;
+      }
+
+      #skip-btn:hover {
+        background: rgba(255,255,255,0.3);
+      }
+
       /* 1. Global Reset & Box Sizing */
       * { box-sizing: border-box; }
 
